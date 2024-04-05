@@ -1,0 +1,64 @@
+﻿@model OAuthClientCreationApp.Models.CreateClientViewModel
+
+@{
+    var successMessage = TempData["SuccessMessage"] as string;
+    var errorMessage = TempData["ErrorMessage"] as string;
+    var client_Id = TempData["client_Id"] as string;
+    var jwkJsonPublic = TempData["jwkJsonPublic"] as string;
+    var jwkJsonPrivate = TempData ["jwkJsonPrivate"] as string;
+    var response = TempData["response"] as string;
+}
+
+@if (!string.IsNullOrEmpty(successMessage))
+{
+    <div class="alert alert-success" role="alert">
+        @successMessage
+    </div>
+    <div class="alert alert-success" role="alert">
+        @client_Id
+    </div>
+    <div class="alert alert-success" role="alert" style="text-align: center;">
+       <pre style="display: inline-block; text-align: left; max-width: 100%; overflow: auto;">
+         @jwkJsonPublic
+       </pre>    
+    </div>
+    <div class="alert alert-success" role="alert" style="text-align: center;">
+        <pre style="display: inline-block; text-align: left; max-width: 100%; overflow: auto;">
+          @jwkJsonPrivate
+        </pre>
+    </div>
+    <div class="alert alert-success" role="alert" style="text-align: center;">
+        <pre style="display: inline-block; text-align: left; max-width: 100%; overflow: auto;">
+          @response
+        </pre>
+    </div>
+
+}
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <div class="alert alert-danger" role="alert">
+        @errorMessage
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <div class="alert alert-info" role="alert">
+        @errorMessage
+    </div>
+}
+
+<h1>Create OAuth Client</h1>
+
+<form asp-action="CreateClient" method="post">
+    <div class="form-group">
+        <label asp-for="ClientId">Client Name:</label>
+        <input asp-for="ClientId" class="form-control" />
+    </div>
+    <div class="form-group" style="margin-bottom: 20px">
+        <label asp-for="RedirectUri">Redirect URI:</label>
+        <input asp-for="RedirectUri" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Create Client</button>
+</form>

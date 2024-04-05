@@ -1,0 +1,19 @@
+@model Newtonsoft.Json.Linq.JObject
+
+@{
+    ViewData["Title"] = "Callback";
+}
+
+
+
+@if (ViewBag.AccessToken != null)
+{
+    <h1>Access Token</h1>
+    <pre>@Html.Raw(ViewBag.AccessToken).ToString()</pre>
+}
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <h1>Error Message</h1>
+    <pre>@Html.Raw(ViewBag.ErrorMessage).ToString()</pre>
+}
